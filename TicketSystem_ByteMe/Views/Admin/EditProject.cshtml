@@ -1,0 +1,28 @@
+﻿@model Project
+<div class="container p-4">
+  <form asp-action="EditProject" method="post">
+    <input type="hidden" asp-for="ProjectID" />
+    <div class="card">
+      <div class="card-header">
+        <label class="mb-1">Edit Project</label>
+      </div>
+      <div class="card-body row text-center">
+        <label class="col-4 text-start">Title:</label>
+        <input class="mb-1 col-4" asp-for="Title" />
+        <span class="col-4 text-start" asp-validation-for="Title"></span>
+        <label class="col-4 text-start">Description:</label>
+        <textarea class="mb-1 col-4" asp-for="Description"></textarea>
+        <span class="col-4 text-start" asp-validation-for="Description"></span>
+        <label class="col-4 text-start">Start: </label>
+        <span class="col-8 text-start">@Model.Start</span>
+        <input type="hidden" asp-for="Start" value="@Model.Start" />
+      </div>
+      <div>
+        <button class="newButton m-3" type="submit">Edit Project</button>
+      </div>
+    </div>
+  </form>
+  <div class="pt-3 p-1">
+    <a class="BackButton" asp-action="ShowProjects">Back</a>
+  </div>
+</div>

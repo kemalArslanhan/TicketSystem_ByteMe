@@ -1,0 +1,46 @@
+﻿@model IQueryable<Project>
+<div class="container p-4">
+  <table class="table table-hover">
+    <thead class="Thead">
+      <tr>
+        <th>ProjectId</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var project in Model)
+      {
+        <tr>
+          <td><a class="aTableRow" asp-action="ProjectDetail" asp-route-id="@project.ProjectID">@project.ProjectID</a></td>
+          <td><a class="aTableRow" asp-action="ProjectDetail" asp-route-id="@project.ProjectID">@project.Title</a></td>
+          <td>
+            <a class="aTableRow" asp-action="ProjectDetail" asp-route-id="@project.ProjectID">
+              @if (@project.Description.Length > 20)
+              {
+                @project.Description.Substring(0, 20) @:...
+              }
+              else
+              {
+                @project.Description
+              }
+            </a>
+          </td>
+          <td><a class="aTableRow" asp-action="ProjectDetail" asp-route-id="@project.ProjectID">@project.Start</a></td>
+          @if (project.End is null)
+          {
+            <td><a class="aButton" asp-action="EditProject" asp-route-id="@project.ProjectID">Edit</a></td>
+          }
+          else
+          {
+            <td><a class="btn btn-outline-success pb-0 pt-0"><div>Ended @project.End</div></a></td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+  <a class="newButton" asp-action="NewProject">Add New Projects</a>
+</div>
+

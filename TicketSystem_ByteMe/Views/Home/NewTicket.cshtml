@@ -1,0 +1,37 @@
+﻿@model Ticket
+<div class="container p-4">
+  <form asp-action="NewTicket" method="post">
+    <div class="card">
+      <div class="card-header">
+        <label>Headline:</label>
+        <input asp-for="Headline" />
+        <span asp-validation-for="Headline"></span>
+      </div>
+      <div class="card-body form-group">
+        <label>Project: </label>
+        <span asp-validation-for="Project"></span>
+        <select asp-for="Project.ProjectID" asp-items="@ViewBag.Project" class="form-control">
+          <option selected disabled value="">...</option>
+        </select>
+        <label>Assigned To: </label>
+        <span asp-validation-for="AssignedTo"></span>
+        <select asp-for="AssignedTo.EmployeeID" asp-items="@ViewBag.Employee" class="form-control">
+          <option selected disabled>...</option>
+        </select>
+        <label>Description:</label>
+        <span asp-validation-for="Description"></span>
+        <div> <textarea asp-for="Description"></textarea></div>
+        <label>Created By: </label>
+        <span asp-validation-for="CreatedBy"></span>
+        <select asp-for="CreatedBy.EmployeeID" asp-items="@ViewBag.Employee" class="form-control">
+          <option selected disabled>...</option>
+        </select>
+        <input type="hidden" asp-for="CreatedAt" value="@DateTime.Now" />
+        <button class="newButton mt-2" type="submit">Submit Ticket</button>
+      </div>
+    </div>
+  </form>
+  <div class="pt-3 p-1">
+    <a class="BackButton" asp-action="ShowTickets">Back</a>
+  </div>
+</div>

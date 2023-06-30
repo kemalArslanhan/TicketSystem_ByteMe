@@ -1,0 +1,32 @@
+﻿@model Employee
+
+<div class="container p-4">
+  <form asp-action="EditEmployee" method="post">
+    <input type="hidden" asp-for="EmployeeID" />
+    <div class="card">
+      <div class="card-header">
+        <label class="mb-1">Edit Employee</label>
+      </div>
+      <div class="card-body row text-center">
+        <label class="col-4 text-start">First Name:</label>
+        <input class="col-4 mb-1" asp-for="FirstName" />
+        <span class="col-4 text-start" asp-validation-for="FirstName"></span>
+        <label class="col-4 text-start">Last Name:</label>
+        <input class="col-4 mb-1" asp-for="LastName" />
+        <span class="col-4 text-start" asp-validation-for="LastName"></span>
+        <label class="col-4 text-start">Job Title: </label>
+        <select class="col-4 mb-1" asp-for="JobTitle">
+          <option value="@JobTitle.Developer">@JobTitle.Developer</option>
+          <option value="@JobTitle.Tester">@JobTitle.Tester</option>
+        </select>
+        <span class="col-4 text-start" asp-validation-for="JobTitle"></span>
+      </div>
+      <div>
+        <button class="newButton m-3" type="submit">Edit Employee</button>
+      </div>
+    </div>
+  </form>
+  <div class="pt-3 p-1">
+    <a class="BackButton" asp-action="ShowEmployees">Back</a>
+  </div>
+</div>

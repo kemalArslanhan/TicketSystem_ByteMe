@@ -1,0 +1,29 @@
+﻿@model List<Employee>
+<div class="container p-4">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Job Title</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var employee in Model)
+      {
+        <tr>
+          <td><a class="aTableRow" asp-action="EmployeeDetail" asp-route-id="@employee.EmployeeID">@employee.EmployeeID</a></td>
+          <td><a class="aTableRow" asp-action="EmployeeDetail" asp-route-id="@employee.EmployeeID">@employee.FirstName</a></td>
+          <td><a class="aTableRow" asp-action="EmployeeDetail" asp-route-id="@employee.EmployeeID">@employee.LastName</a></td>
+          <td><a class="aTableRow" asp-action="EmployeeDetail" asp-route-id="@employee.EmployeeID">@employee.JobTitle</a></td>
+          <td>
+            <a class="aButton" asp-action="EditEmployee" asp-route-id="@employee.EmployeeID">Edit</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <a class="newButton" asp-action="NewEmployee">Add New Employee</a>
+</div>

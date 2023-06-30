@@ -1,0 +1,37 @@
+﻿@model IQueryable<Ticket>
+<div class="container p-4">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Projekt</th>
+        <th>Headline</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var ticket in Model)
+      {
+        <tr>
+          <td><a class="aTableRow" >@ticket.Project.Title</a></td>
+          <td><a class="aTableRow" >@ticket.Headline</a></td>
+          @if (ticket.SolvedAt is null && ticket.AssignedTo.Terminated == true)
+          {
+            <td style="text-align: center"><a style="text-decoration-line:line-through; " class="aButton" title="Edit in Adminarea not available">Edit @ticket.AssignedTo.FirstName @ticket.AssignedTo.LastName</a></td>
+          }
+          else if (ticket.SolvedAt is null && ticket.AssignedTo.Terminated == false)
+          {
+            <td style="text-align: center"><a style="text-decoration-line:line-through" class="aButton" title="Edit in Adminarea not available">Edit</a></td>
+          }
+          else if (ticket.SolvedAt is not null && ticket.AssignedTo.Terminated == true)
+          {
+            <td style="text-align: center" ><a class="btn btn-outline-success pb-0 pt-0"><div>Closed @ticket.SolvedAt</div></a></td>
+          }
+          else
+          {
+            <td style="text-align: center"><a  class="btn btn-outline-success pb-0 pt-0"><div>Solved @ticket.SolvedAt</div></a></td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

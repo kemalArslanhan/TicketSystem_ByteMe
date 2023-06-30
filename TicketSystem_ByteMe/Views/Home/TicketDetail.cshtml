@@ -1,0 +1,38 @@
+﻿@model Ticket
+
+<div class="container p-4">
+  <div class="card">
+    <div class="card-header fw-bold">
+      <div>Project: @Model.Project.Title </div>
+      <div>Ticket ID: @Model.TicketID</div>
+    </div>
+    <div class="card-body">
+      <div class="line"></div>
+      <div class="card-title fw-bold text-center">
+        <div class="fs-4">@Model.Headline</div>
+        <div class="assignedTo">Ticket assigned to: @Model.AssignedTo.FirstName @Model.AssignedTo.LastName</div>
+      </div>
+      <div class="line"></div>
+      <p class="card-text">@Model.Description</p>
+      @if (Model.SolvedAt == null && Model.AssignedTo.Terminated == false)
+      {
+        <a class="SolvedButton" asp-action="SolvedTicket" asp-route-id="@Model.TicketID">mark as solved</a>
+      }
+      else if (Model.SolvedAt == null && Model.AssignedTo.Terminated)
+      {
+        <a class="SolvedButton" asp-action="SolvedTicket" asp-route-id="@Model.TicketID">mark as closed</a>
+      }
+    </div>
+    <div class="card-footer text-muted createdBy">
+      Created @Model.CreatedAt by @Model.CreatedBy.FirstName @Model.CreatedBy.LastName
+      @if (Model.SolvedAt != null)
+      {
+        @:Solved @Model.SolvedAt
+      }
+    </div>
+  </div>
+  <div class="pt-3 p-1">
+    <a class="BackButton" asp-action="ShowTickets">Back</a>
+  </div>
+</div>
+

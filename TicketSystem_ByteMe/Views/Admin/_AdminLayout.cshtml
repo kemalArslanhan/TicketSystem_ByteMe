@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-gb">
+
+<head>
+  <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+  <link href="~/AdminStyleSheet.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Web App</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" asp-action="Home"><img src="~/img/bitlclogo_red.png" width="175" /></a>
+      <div>
+        <a asp-controller="Home" asp-action="Index" class="nav-link FontColor"><i class="fa fa-sign-out"></i> Leave Admin Area</a>
+      </div>
+      <div>
+        <a class="nav-link FontColor" asp-action="ShowProjects"><i class="fa fa-diagram-project"></i> Projects</a>
+      </div>
+      <div>
+        <a class="nav-link FontColor" asp-action="ShowEmployees"><i class="fa fa-user"></i> Employees</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    @RenderBody()
+  </main>
+  <footer class="footer">
+    <div class="container text-center ">
+      <p>&copy; 2023 ByteMe Ticketsystem. All rights reserve<a asp-action="Error" style="text-decoration:none; color:white;">d</a>.</p>
+    </div>
+  </footer>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

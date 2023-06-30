@@ -1,0 +1,40 @@
+﻿@model Project
+
+<div class="container p-4">
+  <div class="card">
+    <div class="card-header fw-bold">
+      <div>Project ID: @Model.ProjectID</div>
+    </div>
+    <div class="card-body">
+      <div class="line"></div>
+      <div class="card-title fw-bold text-center">
+        <div class="fs-4">@Model.Title</div>
+      </div>
+      <div class="line"></div>
+      <p class="card-text">@Model.Description</p>
+      @if (Model.End == null)
+      {
+        <a class="SolvedButton" asp-action="EndProject" asp-route-id="@Model.ProjectID">finish Project</a>
+      }
+    </div>
+    <div class="card-footer text-muted createdBy">
+      Start: @Model.Start
+      @if (Model.End != null)
+      {
+        @:End: @Model.End
+      }
+    </div>
+  </div>
+  <div class="pt-3 p-1">
+    <a class="BackButton" asp-action="ShowProjects">Back</a>
+    @if (!ViewBag.TicketsProjectID.Contains(Model.ProjectID))
+    {
+      <a class="DeleteButton" asp-action="DeleteProject" asp-route-id="@Model.ProjectID">Delete</a>
+    }
+    else
+    {
+      <a class="DeleteButtonDisabled" title="project has already assigned ticket" disabled>Delete</a>
+    }
+  </div>
+</div>
+

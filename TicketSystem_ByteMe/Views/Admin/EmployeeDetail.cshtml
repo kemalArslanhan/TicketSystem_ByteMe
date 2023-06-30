@@ -1,0 +1,30 @@
+﻿@model Employee
+<div class="container p-4">
+  <div class="card">
+    <div class="card-header fw-bold">
+      <div>Employee ID: @Model.EmployeeID</div>
+    </div>
+    <div class="card-body">
+      <div class="line"></div>
+      <div class="card-title fw-bold text-center">
+        <div class="fs-4">@Model.FirstName @Model.LastName</div>
+      </div>
+      <div class="line"></div>
+      <p class="card-text">Job Title: @Model.JobTitle</p>
+    </div>
+  </div>
+  <div class="pt-3 p-1">
+    <a class="BackButton" asp-action="ShowEmployees">Back</a>
+    @if (ViewBag.TicketsAssignedTo.Contains(Model.EmployeeID) || ViewBag.TicketsCreatedBy.Contains(Model.EmployeeID))
+    {
+      if (Model.Terminated == false)
+      {
+        <a class="DeleteButton" asp-action="TerminateEmployee" asp-route-id="@Model.EmployeeID">Terminate</a>
+      }
+    }
+    else
+    {
+      <a class="DeleteButton" asp-action="DeleteEmployee" asp-route-id="@Model.EmployeeID">Delete</a>
+    }
+  </div>
+</div>

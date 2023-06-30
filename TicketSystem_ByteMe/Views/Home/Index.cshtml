@@ -1,0 +1,73 @@
+﻿@model EFTicketSystemRepository
+<style>
+  td {
+    font-weight: bold;
+    text-align: start;
+  }
+</style>
+<div class="text-center m-4">
+  <h1 class="m-4">ByteMe Ticketsystem BITLC</h1>
+  <div class="container imghover col-2">
+    <img src="~/img/ticketbite.png" height="200" width="200" />
+    <img src="~/img/ticketbite2.png" height="200" width="200" />
+  </div>
+  <h2 class="m-4">@DateTime.Now.ToShortDateString()</h2>
+  <div class="container p-4">
+    <div class="row m-4">
+      <div class="col-4">
+        <h4>Employees</h4>
+        <table class="table table-bordered">
+          <tr>
+            <td>Total</td>
+            <td>@Model.Employees.Count()</td>
+          </tr>
+          <tr>
+            <td>Developer</td>
+            <td>@Model.Employees.Where(e => e.JobTitle == JobTitle.Developer).Count()</td>
+          </tr>
+          <tr>
+            <td>Tester</td>
+            <td>@Model.Employees.Where(e => e.JobTitle == JobTitle.Tester).Count()</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-4">
+        <h4>Projects</h4>
+        <table class="table table-bordered">
+          <tr>
+            <td>Total</td>
+            <td>@Model.Projects.Count()</td>
+          </tr>
+          <tr>
+            <td>Pending</td>
+            <td>@Model.Projects.Where(p => p.End == null).Count()</td>
+          </tr>
+          <tr>
+            <td>Closed</td>
+            <td>@Model.Projects.Where(p => p.End != null).Count()</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-4">
+        <h4>Tickets</h4>
+        <table class="table table-bordered">
+          <tr>
+            <td>Total</td>
+            <td>@Model.Tickets.Count()</td>
+          </tr>
+          <tr>
+            <td>Pending</td>
+            <td>@Model.Tickets.Where(p => p.SolvedAt == null).Count()</td>
+          </tr>
+          <tr>
+            <td>Solved / Closed</td>
+            <td>
+              @Model.Tickets.Where(p => p.SolvedAt != null).Where(p => p.AssignedTo.Terminated == false).Count()
+            / @Model.Tickets.Where(p => p.SolvedAt != null).Where(p => p.AssignedTo.Terminated == true).Count()
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
